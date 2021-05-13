@@ -12,6 +12,8 @@
       become: false
 
     - name: get value of env var
+      # tested on debian 10
+      # shell: 'source /home/fr3dx/.profile && echo $ENV_VAR'
       shell: '. /home/fr3dx/.profile && echo $ENV_VAR'
       register: envvar
 
