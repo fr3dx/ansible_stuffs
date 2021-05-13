@@ -1,0 +1,19 @@
+---
+- name: inject enc to profile
+  hosts: awx
+  become: true
+
+  tasks:
+    - name: add env var to profile
+      lineinfile:
+        dest: "/home/fr3dx/.profile"
+        regexp: '^ENV_VAR='
+        line: 'ENV_VAR=csacsi'
+      become: false
+
+    - name: get value of env var
+      shell: '. /home/fr3dx/.profile && echo $ENV_VAR'
+      register: envvar
+
+    - debug: 
+        msg: "{{ envvar.stdout }}"
