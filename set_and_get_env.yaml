@@ -1,5 +1,5 @@
 ---
-- name: inject enc to profile
+- name: inject env to profile
   hosts: awx
   become: true
 
@@ -8,7 +8,7 @@
       lineinfile:
         dest: "/home/fr3dx/.profile"
         regexp: '^ENV_VAR='
-        line: 'ENV_VAR=csacsi'
+        line: 'ENV_VAR=value'
       become: false
 
     - name: get value of env var
